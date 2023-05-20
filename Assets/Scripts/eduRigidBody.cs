@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class eduRigidBody : MonoBehaviour
 {
-    private Transform transform;
     public Vector2 velocity;
     public float angularVelocity;
     public Vector2 force;
@@ -12,15 +12,26 @@ public class eduRigidBody : MonoBehaviour
     public float torque;
     public float inertia;
     public float bounceConstant;
-    public float deltaTime;
 
-    private void FixedUpdate()
+    private void Start()
     {
-        deltaTime = Time.fixedDeltaTime; //uppdateras 0.2s istället för beroende på framerate som vanliga update gör
-        double nextVelY = velocity.y + (force.y / mass) * deltaTime;
-        double nextVelX = velocity.x + (force.x / mass) * deltaTime;
-        double nextPosY = transform.position.y + nextVelY * deltaTime;
-        double nextPosX = transform.position.x + nextVelX * deltaTime;
+        velocity = new Vector2(10, 10);
+    }
+
+    private void FixedUpdate() //uppdateras 0.2s istället för beroende på framerate som vanliga update gör
+    {
+        float deltaTime = Time.fixedDeltaTime; 
+        
+        float nextVelY = velocity.y + (force.y * deltaTime / mass);
+        velocity.y = nextVelY;
+        float nextVelX = velocity.x + (force.x * deltaTime / mass);
+        velocity.x = nextVelX;
+
+        float nextPosY = transform.position.y + (nextVelY * deltaTime);
+        float nextPosX = transform.position.x + (nextVelX * deltaTime);
+
+        transform.position = new Vector3(nextPosX, nextPosY);
+        //transform.Translate(velocity.x * deltaTime, velocity.y * deltaTime, 0);
 
         force.x = 0;
         force.y = 0;

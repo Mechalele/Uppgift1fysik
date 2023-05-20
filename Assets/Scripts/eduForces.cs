@@ -12,14 +12,13 @@ public class eduForces : MonoBehaviour
     void Start()
     {
         rbs = FindObjectsByType<eduRigidBody>(FindObjectsSortMode.None);
-        
     }
 
     private void FixedUpdate()
     {
         foreach (var rb in rbs)
         {
-            gravityForce = new(0f, rb.mass * 9.82f);
+            gravityForce = new Vector2(0f, rb.mass * -9.82f);
             
             rb.applyForce(gravityForce); 
             rb.applyTorque(torque); 

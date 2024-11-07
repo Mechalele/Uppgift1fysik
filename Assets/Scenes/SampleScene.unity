@@ -296,15 +296,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f5f457970815b3478b309a204a21811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: {x: 10, y: 10}
+  velocity: {x: 15, y: 15}
   angularVelocity: 0
   force: {x: 0, y: 0}
   mass: 196.34955
   torque: 0
   inertia: 24.543694
   bounceConstant: 0
-  nextVelY: 0
-  nextVelX: 0
 --- !u!212 &1589418314
 SpriteRenderer:
   m_ObjectHideFlags: 0

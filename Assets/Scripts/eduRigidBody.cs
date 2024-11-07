@@ -15,7 +15,7 @@ public class eduRigidBody : MonoBehaviour
 
     private void Start()
     {
-        velocity = new Vector2(10, 10);
+
     }
 
     private void FixedUpdate() //uppdateras 0.2s istället för beroende på framerate som vanliga update gör
@@ -42,6 +42,7 @@ public class eduRigidBody : MonoBehaviour
     {
         force += f;
     }
+
     public void applyTorque(float t)
     {
         torque += t;

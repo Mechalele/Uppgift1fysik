@@ -12,30 +12,49 @@ public class eduRigidBody : MonoBehaviour
     public float torque;
     public float inertia;
     public float bounceConstant;
+    public float restitution;
+    public int frameSkip;
+    public float deltaTime;
 
     private void Start()
     {
+        Debug.Log(Time.fixedDeltaTime);
+        //är detta rätt? ser inte ut och matcha bild på 1.2
+        Time.fixedDeltaTime = Time.fixedDeltaTime * (frameSkip + 1);
+        deltaTime = Time.fixedDeltaTime;
 
+        Debug.Log(Time.fixedDeltaTime + " " + deltaTime);
     }
 
     private void FixedUpdate() //uppdateras 0.2s istället för beroende på framerate som vanliga update gör
     {
-        float deltaTime = Time.fixedDeltaTime; 
         
-        float nextVelY = velocity.y + (force.y * deltaTime / mass);
+
+
+        MoveObj(deltaTime);
+
+        Debug.Log("Fixedupdate " + gameObject.name);
+
+        //lägg till angularvel 
+
+        force.x = 0;
+        force.y = 0;
+        torque = 0;
+    }
+
+    private void MoveObj(float deltaTime)
+    {
+        //v = v + at, a = F/m
+        float nextVelY = velocity.y + (force.y / mass) * deltaTime;
         velocity.y = nextVelY;
-        float nextVelX = velocity.x + (force.x * deltaTime / mass);
+
+        float nextVelX = velocity.x + (force.x / mass) * deltaTime;
         velocity.x = nextVelX;
 
         float nextPosY = transform.position.y + (nextVelY * deltaTime);
         float nextPosX = transform.position.x + (nextVelX * deltaTime);
 
         transform.position = new Vector3(nextPosX, nextPosY);
-        //transform.Translate(velocity.x * deltaTime, velocity.y * deltaTime, 0);
-
-        force.x = 0;
-        force.y = 0;
-        torque = 0;
     }
 
     public void applyForce(Vector2 f)
@@ -50,6 +69,6 @@ public class eduRigidBody : MonoBehaviour
 
     public void applyImpulse(Vector2 j)
     {
-        velocity += j; //??
+        velocity += j; //gör inget i nuläget
     }
 }

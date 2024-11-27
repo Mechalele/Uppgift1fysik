@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(eduRigidBody))]
 public class eduCircleCollider : MonoBehaviour
 {
-    public float Radius => radius;
+    [SerializeField]
     private float radius;
     [SerializeField]
     private float density;
@@ -15,18 +15,18 @@ public class eduCircleCollider : MonoBehaviour
     void Start()
     {
         calculateValues();
-        
     }
 
     private void OnValidate()
     {
         calculateValues();
     }
+
     private void calculateValues()
     {
-        radius = gameObject.transform.localScale.x / 2;
+        radius = gameObject.transform.localScale.x;
         eduRigidBody = GetComponent<eduRigidBody>();
-        eduRigidBody.mass = density * radius * radius * Mathf.PI; // Samma som densitet * area eftersom att höjden = 1
+        eduRigidBody.mass = density * radius * radius * Mathf.PI; // Samma som densitet * area eftersom att det är en cirkel
         eduRigidBody.inertia = (radius * radius * eduRigidBody.mass) / 2;
     }
 

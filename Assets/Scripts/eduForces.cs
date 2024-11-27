@@ -29,6 +29,6 @@ public class eduForces : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //If needed: draw lines etc to visualize forces here.
     }
 }

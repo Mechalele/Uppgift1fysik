@@ -186,7 +186,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!96 &451914360
 TrailRenderer:
   serializedVersion: 2
@@ -312,6 +312,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f5f457970815b3478b309a204a21811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startPos: {x: 0, y: 0, z: 0}
+  currentPos: {x: 0, y: 0, z: 0}
   velocity: {x: 10, y: 10}
   angularVelocity: 0
   force: {x: 0, y: 0}
@@ -321,7 +323,6 @@ MonoBehaviour:
   bounceConstant: 0
   restitution: 0
   frameSkip: 3
-  deltaTime: 0
 --- !u!212 &451914363
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -492,7 +493,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!96 &1070099780
 TrailRenderer:
   serializedVersion: 2
@@ -618,6 +619,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f5f457970815b3478b309a204a21811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startPos: {x: 0, y: 0, z: 0}
+  currentPos: {x: 0, y: 0, z: 0}
   velocity: {x: 10, y: 10}
   angularVelocity: 0
   force: {x: 0, y: 0}
@@ -627,7 +630,6 @@ MonoBehaviour:
   bounceConstant: 0
   restitution: 0
   frameSkip: 6
-  deltaTime: 0
 --- !u!212 &1070099783
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -741,6 +743,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f5f457970815b3478b309a204a21811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startPos: {x: 0, y: 0, z: 0}
+  currentPos: {x: 0, y: 0, z: 0}
   velocity: {x: 10, y: 10}
   angularVelocity: 0
   force: {x: 0, y: 0}
@@ -750,7 +754,6 @@ MonoBehaviour:
   bounceConstant: 0
   restitution: 0
   frameSkip: 0
-  deltaTime: 0
 --- !u!212 &1589418314
 SpriteRenderer:
   m_ObjectHideFlags: 0

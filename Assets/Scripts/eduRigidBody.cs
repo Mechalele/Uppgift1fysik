@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 public class eduRigidBody : MonoBehaviour
 {
     public Vector3 startPos = new Vector3(0, 0);
-    public Vector3 currentPos = new Vector3(0, 0);
+    public Vector3 lastPos;
 
     public Vector2 velocity;
     public float angularVelocity;
@@ -16,27 +16,37 @@ public class eduRigidBody : MonoBehaviour
     public float inertia;
     public float bounceConstant;
     public float restitution;
+    
     public int frameSkip;
+    public float deltaTime;
+    public float timer;
 
     private void Start()
     {
+        lastPos = startPos;
 
-        startPos = currentPos;
+        //Kan inte ha flera bollar igång samtidigt pga att detta ändrar tiden globalt
+        //Time.fixedDeltaTime = Time.fixedDeltaTime * (frameSkip + 1);
 
-        Debug.Log(Time.fixedDeltaTime);
-        //är detta rätt? ser inte ut och matcha bild på 1.2
-        Time.fixedDeltaTime = Time.fixedDeltaTime * (frameSkip + 1);
+        //Debug.Log(Time.fixedDeltaTime);
 
-        Debug.Log(Time.fixedDeltaTime);
+
+        deltaTime = Time.fixedDeltaTime * (frameSkip + 1);
+        Debug.Log(deltaTime);
+
     }
 
-    private void FixedUpdate() //uppdateras 0.2s istället för beroende på framerate som vanliga update gör
+    private void FixedUpdate()
     {
-        AnalyticalTrajectory();
+        timer += Time.fixedDeltaTime;
 
-        MoveObj();
+        if (timer > deltaTime)
+        {
 
-        Debug.Log("Fixedupdate " + gameObject.name);
+            MoveObj();
+
+            timer = 0;
+        }
 
         //lägg till angularvel 
 
@@ -45,25 +55,19 @@ public class eduRigidBody : MonoBehaviour
         torque = 0;
     }
 
-    private void AnalyticalTrajectory()
-    {
-        Debug.Log(force.y);
-        Vector3 trajectory = new Vector3(startPos.x + velocity.x * Time.fixedDeltaTime, startPos.y + velocity.y * Time.fixedDeltaTime + -9.82f * Mathf.Pow(Time.fixedDeltaTime, 2) / 2);
-
-        Debug.DrawLine(startPos, trajectory, Color.white, 5f);
-    }
-
     private void MoveObj()
     {
-        //v = v + at, a = F/m
-        float nextVelY = velocity.y + (force.y / mass) * Time.fixedDeltaTime;
+        //Debug.Log(" y led " + force.y + " x led " + force.x + " accel " + force.y / mass);
+
+        //v = v + at, a = F/m = -9.82
+        float nextVelY = velocity.y + (force.y / mass) * deltaTime;
         velocity.y = nextVelY;
 
-        float nextVelX = velocity.x + (force.x / mass) * Time.fixedDeltaTime;
+        float nextVelX = velocity.x + (force.x / mass) * deltaTime;
         velocity.x = nextVelX;
 
-        float nextPosY = transform.position.y + (nextVelY * Time.fixedDeltaTime);
-        float nextPosX = transform.position.x + (nextVelX * Time.fixedDeltaTime);
+        float nextPosY = transform.position.y + (nextVelY * deltaTime);
+        float nextPosX = transform.position.x + (nextVelX * deltaTime);
 
         transform.position = new Vector3(nextPosX, nextPosY);
     }
@@ -75,7 +79,7 @@ public class eduRigidBody : MonoBehaviour
 
     public void applyTorque(float t)
     {
-        torque += t;
+        torque += t; //gör inget i nuläget
     }
 
     public void applyImpulse(Vector2 j)

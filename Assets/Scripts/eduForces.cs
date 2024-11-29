@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class eduForces : MonoBehaviour
 {
+    //need to add flags and values to turn on/off forces
+
     eduRigidBody[] rbs;
     Vector2 gravityForce;
     float torque;
@@ -20,6 +22,8 @@ public class eduForces : MonoBehaviour
         {
             gravityForce = new Vector2(0f, rb.mass * -9.82f);
             
+            //Debug.Log(gravityForce + " gravityforce ");
+
             rb.applyForce(gravityForce); 
             rb.applyTorque(torque); 
         }

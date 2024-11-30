@@ -30,9 +30,8 @@ public class eduRigidBody : MonoBehaviour
 
         //Debug.Log(Time.fixedDeltaTime);
 
-
         deltaTime = Time.fixedDeltaTime * (frameSkip + 1);
-        Debug.Log(deltaTime);
+        //Debug.Log(deltaTime);
 
     }
 
@@ -70,6 +69,15 @@ public class eduRigidBody : MonoBehaviour
         float nextPosX = transform.position.x + (nextVelX * deltaTime);
 
         transform.position = new Vector3(nextPosX, nextPosY);
+
+        //velocity.y += (force.y / mass) * deltaTime;
+        //velocity.x += (force.x / mass) * deltaTime;
+
+        //Vector3 newPos = transform.position;
+        //newPos.y += velocity.y * deltaTime;
+        //newPos.x += velocity.x * deltaTime;
+
+        //transform.position = newPos;
     }
 
     public void applyForce(Vector2 f)

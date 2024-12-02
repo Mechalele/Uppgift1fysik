@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class eduForces : MonoBehaviour
 {
-    //need to add flags and values to turn on/off forces
-
     eduRigidBody[] rbs;
-    Vector2 gravityForce;
-    float torque;
 
-    // Start is called before the first frame update
+    public bool gravityOn = true; // behövs fixas
+    public Vector2 gravityForce;
+    
+    public bool torqueOn = true;
+    public float torque;
+
+
     void Start()
     {
         rbs = FindObjectsByType<eduRigidBody>(FindObjectsSortMode.None);
@@ -28,11 +30,5 @@ public class eduForces : MonoBehaviour
             rb.applyTorque(torque); 
         }
         
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //If needed: draw lines etc to visualize forces here.
     }
 }

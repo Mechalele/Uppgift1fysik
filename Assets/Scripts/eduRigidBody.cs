@@ -5,9 +5,6 @@ using UnityEngine.UIElements;
 
 public class eduRigidBody : MonoBehaviour
 {
-    public Vector3 startPos = new Vector3(0, 0);
-    public Vector3 lastPos;
-
     public Vector2 velocity;
     public float angularVelocity;
     public Vector2 force;
@@ -23,7 +20,6 @@ public class eduRigidBody : MonoBehaviour
 
     private void Start()
     {
-        lastPos = startPos;
 
         //Kan inte ha flera bollar igång samtidigt pga att detta ändrar tiden globalt
         //Time.fixedDeltaTime = Time.fixedDeltaTime * (frameSkip + 1);
@@ -56,7 +52,8 @@ public class eduRigidBody : MonoBehaviour
 
     private void MoveObj()
     {
-        //Debug.Log(" y led " + force.y + " x led " + force.x + " accel " + force.y / mass);
+        Debug.Log(" y led " + force.y + " x led " + 
+            force.x + " accel " + force.y / mass + " mass " + mass);
 
         //v = v + at, a = F/m = -9.82
         float nextVelY = velocity.y + (force.y / mass) * deltaTime;

@@ -152,6 +152,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a5ca4be3dbd224fb6ea4bf7c9dd43d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gravityOn: 1
+  gravityForce: {x: 0, y: -9.82}
+  torqueOn: 1
+  torque: 0
 --- !u!4 &356868706
 Transform:
   m_ObjectHideFlags: 0
@@ -298,7 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91d28aa5b5e38ac46bce2a638bb6d6c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 1
+  radius: 0.5
   density: 250
 --- !u!114 &451914362
 MonoBehaviour:
@@ -312,14 +316,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f5f457970815b3478b309a204a21811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPos: {x: 0, y: 0, z: 0}
-  lastPos: {x: 0, y: 0, z: 0}
   velocity: {x: 10, y: 10}
   angularVelocity: 0
   force: {x: 0, y: 0}
-  mass: 785.3982
+  mass: 196.34955
   torque: 0
-  inertia: 392.6991
+  inertia: 24.543694
   bounceConstant: 0
   restitution: 0
   frameSkip: 3
@@ -607,7 +609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91d28aa5b5e38ac46bce2a638bb6d6c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 1
+  radius: 0.5
   density: 250
 --- !u!114 &1070099782
 MonoBehaviour:
@@ -621,14 +623,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f5f457970815b3478b309a204a21811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPos: {x: 0, y: 0, z: 0}
-  lastPos: {x: 0, y: 0, z: 0}
   velocity: {x: 10, y: 10}
   angularVelocity: 0
   force: {x: 0, y: 0}
-  mass: 785.3982
+  mass: 196.34955
   torque: 0
-  inertia: 392.6991
+  inertia: 24.543694
   bounceConstant: 0
   restitution: 0
   frameSkip: 6
@@ -733,7 +733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91d28aa5b5e38ac46bce2a638bb6d6c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 1
+  radius: 0.5
   density: 250
 --- !u!114 &1589418313
 MonoBehaviour:
@@ -747,14 +747,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f5f457970815b3478b309a204a21811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPos: {x: 0, y: 0, z: 0}
-  lastPos: {x: 0, y: 0, z: 0}
   velocity: {x: 10, y: 10}
   angularVelocity: 0
   force: {x: 0, y: 0}
-  mass: 785.3982
+  mass: 196.34955
   torque: 0
-  inertia: 392.6991
+  inertia: 24.543694
   bounceConstant: 0
   restitution: 0
   frameSkip: 0

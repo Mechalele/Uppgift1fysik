@@ -5,11 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(eduRigidBody))]
 public class eduCircleCollider : MonoBehaviour
 {
-    [SerializeField]
-    private float radius;
-    [SerializeField]
-    private float density;
-    private eduRigidBody eduRigidBody;
+    public float radius;
+    public float density;
+    private eduRigidBody rb;
 
     // Start is called before the first frame update
     void Start()
@@ -24,15 +22,10 @@ public class eduCircleCollider : MonoBehaviour
 
     private void calculateValues()
     {
-        radius = gameObject.transform.localScale.x;
-        eduRigidBody = GetComponent<eduRigidBody>();
-        eduRigidBody.mass = density * radius * radius * Mathf.PI; // Samma som densitet * area eftersom att det är en cirkel
-        eduRigidBody.inertia = (radius * radius * eduRigidBody.mass) / 2;
+        radius = gameObject.transform.localScale.x / 2f;
+        rb = GetComponent<eduRigidBody>();
+        rb.mass = density * radius * radius * Mathf.PI; // Samma som densitet * area eftersom att det är en cirkel
+        rb.inertia = (radius * radius * rb.mass) / 2;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

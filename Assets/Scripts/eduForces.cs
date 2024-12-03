@@ -22,8 +22,15 @@ public class eduForces : MonoBehaviour
     {
         foreach (var rb in rbs)
         {
-            gravityForce = new Vector2(0f, rb.mass * -9.82f);
-            
+            if (gravityOn == true)
+            {
+                gravityForce = new Vector2(0f, rb.mass * -9.82f);
+            }
+            else
+            {
+                gravityForce = Vector2.zero;
+            }
+
             //Debug.Log(gravityForce + " gravityforce ");
 
             rb.applyForce(gravityForce); 

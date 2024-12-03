@@ -9,8 +9,8 @@ public class eduRigidBody : MonoBehaviour
     public float angularVelocity;
     public Vector2 force;
     public float mass;
-    public float torque;
-    public float inertia;
+    public float torque; //vridmoment
+    public float inertia; //tröghets moment
     public float bounceConstant;
     public float restitution;
     
@@ -40,7 +40,7 @@ public class eduRigidBody : MonoBehaviour
 
             MoveObj();
 
-            timer = 0;
+            timer = Time.fixedDeltaTime;
         }
 
         //lägg till angularvel 
@@ -89,6 +89,6 @@ public class eduRigidBody : MonoBehaviour
 
     public void applyImpulse(Vector2 j)
     {
-        velocity += j; //gör inget i nuläget
+        
     }
 }

@@ -33,6 +33,11 @@ public class eduForces : MonoBehaviour
 
             //Debug.Log(gravityForce + " gravityforce ");
 
+            if (torqueOn == false)
+            {
+                torque = 0f;
+            }
+
             rb.applyForce(gravityForce); 
             rb.applyTorque(torque); 
         }

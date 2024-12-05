@@ -5,30 +5,27 @@ using UnityEngine.UIElements;
 
 public class eduRigidBody : MonoBehaviour
 {
+    //velocities
     public Vector2 velocity;
-    public float angularVelocity;
+    public float startAngularVelocity;
+    public float updatingAngularVelocity;
+
+    //forces
     public Vector2 force;
     public float mass;
-    public float torque; //vridmoment
+    public float torque; //vrid/kraft(?) moment
     public float inertia; //tröghets moment
     public float bounceConstant;
     public float restitution;
     
+    //add ons
     public int frameSkip;
     public float deltaTime;
     public float timer;
 
     private void Start()
     {
-
-        //Kan inte ha flera bollar igång samtidigt pga att detta ändrar tiden globalt
-        //Time.fixedDeltaTime = Time.fixedDeltaTime * (frameSkip + 1);
-
-        //Debug.Log(Time.fixedDeltaTime);
-
         deltaTime = Time.fixedDeltaTime * (frameSkip + 1);
-        //Debug.Log(deltaTime);
-
     }
 
     private void FixedUpdate()
@@ -44,6 +41,7 @@ public class eduRigidBody : MonoBehaviour
         }
 
         //lägg till angularvel 
+        updatingAngularVelocity = startAngularVelocity + torque * Time.fixedDeltaTime / inertia;
 
         force.x = 0;
         force.y = 0;
@@ -52,8 +50,7 @@ public class eduRigidBody : MonoBehaviour
 
     private void MoveObj()
     {
-        Debug.Log(" y led " + force.y + " x led " + 
-            force.x + " accel " + force.y / mass + " mass " + mass);
+        //Debug.Log(" y led " + force.y + " x led " + force.x + " accel " + force.y / mass + " mass " + mass);
 
         //v = v + at, a = F/m = -9.82
         float nextVelY = velocity.y + (force.y / mass) * deltaTime;
@@ -84,7 +81,8 @@ public class eduRigidBody : MonoBehaviour
 
     public void applyTorque(float t)
     {
-        torque += t; //gör inget i nuläget
+        torque += t;
+        Debug.Log(" applied torque = " + torque + " add on new torque " + t);
     }
 
     public void applyImpulse(Vector2 j)

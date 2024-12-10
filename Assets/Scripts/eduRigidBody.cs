@@ -9,6 +9,7 @@ public class eduRigidBody : MonoBehaviour
     public Vector2 velocity;
     public float startAngularVelocity;
     public float updatingAngularVelocity;
+    public float totalAngularVelocity;
 
     //forces
     public Vector2 force;
@@ -36,16 +37,28 @@ public class eduRigidBody : MonoBehaviour
         {
 
             MoveObj();
-
+            SpinObj();
             timer = Time.fixedDeltaTime;
         }
 
         //lägg till angularvel 
-        updatingAngularVelocity = startAngularVelocity + torque * Time.fixedDeltaTime / inertia;
+        
+
+        //Debug.Log(updatingAngularVelocity + " startAngularVelocity " + startAngularVelocity + " totalvel " + totalAngularVelocity + " torque " + torque + " inertia " + inertia);
+
+        
 
         force.x = 0;
         force.y = 0;
         torque = 0;
+    }
+
+    private void SpinObj()
+    {
+        updatingAngularVelocity += torque * deltaTime / inertia;
+        Debug.Log(" updtvel " + updatingAngularVelocity + " for " + transform.name);
+        totalAngularVelocity = updatingAngularVelocity + startAngularVelocity;
+        transform.Rotate(0, 0, totalAngularVelocity);
     }
 
     private void MoveObj()
@@ -82,7 +95,7 @@ public class eduRigidBody : MonoBehaviour
     public void applyTorque(float t)
     {
         torque += t;
-        Debug.Log(" applied torque = " + torque + " add on new torque " + t);
+        //Debug.Log(" applied torque = " + torque + " add on new torque " + t);
     }
 
     public void applyImpulse(Vector2 j)

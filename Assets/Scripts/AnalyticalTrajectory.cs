@@ -23,7 +23,6 @@ public class AnalyticalTrajectory : MonoBehaviour
     //fixed vs vanlig update? fixeddeltatime är ändrad för alla obj
     void Update()
     {
-
         timeVar += Time.deltaTime;
 
         currentPos = new Vector3(startPos.x + startVel.x * timeVar, startPos.y + startVel.y * timeVar + -9.82f * Mathf.Pow(timeVar, 2) / 2);
@@ -33,8 +32,6 @@ public class AnalyticalTrajectory : MonoBehaviour
         Debug.DrawLine(lastPos, currentPos, Color.white, 10f);
 
         lastPos = currentPos;
-
-
     }
 
     //void FixedUpdate()

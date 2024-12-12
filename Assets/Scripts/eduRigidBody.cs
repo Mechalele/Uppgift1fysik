@@ -35,19 +35,11 @@ public class eduRigidBody : MonoBehaviour
 
         if (timer > deltaTime)
         {
-
             MoveObj();
             SpinObj();
             timer = Time.fixedDeltaTime;
         }
-
-        //lägg till angularvel 
         
-
-        //Debug.Log(updatingAngularVelocity + " startAngularVelocity " + startAngularVelocity + " totalvel " + totalAngularVelocity + " torque " + torque + " inertia " + inertia);
-
-        
-
         force.x = 0;
         force.y = 0;
         torque = 0;
@@ -55,9 +47,14 @@ public class eduRigidBody : MonoBehaviour
 
     private void SpinObj()
     {
+        //Debug.Log(updatingAngularVelocity + " startAngularVelocity " + startAngularVelocity + " totalvel " + totalAngularVelocity + " torque " + torque + " inertia " + inertia);
+
         updatingAngularVelocity += torque * deltaTime / inertia;
-        Debug.Log(" updtvel " + updatingAngularVelocity + " for " + transform.name);
+        
+        //Debug.Log(" updtvel " + updatingAngularVelocity + " for " + transform.name);
+        
         totalAngularVelocity = updatingAngularVelocity + startAngularVelocity;
+        
         transform.Rotate(0, 0, totalAngularVelocity);
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class eduForces : MonoBehaviour
 {
-    eduRigidBody[] rbs;
+    public eduRigidBody[] rbs;
 
     public bool gravityOn = true; // behövs fixas
     public Vector2 gravityForce;

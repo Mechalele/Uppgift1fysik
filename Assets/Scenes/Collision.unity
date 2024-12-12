@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 59660472}
   - component: {fileID: 59660471}
   - component: {fileID: 59660470}
+  - component: {fileID: 59660474}
   m_Layer: 0
   m_Name: Ball (3)
   m_TagString: Untagged
@@ -179,7 +180,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cf2767245fc54c443986356de0e30dc0, type: 2}
+  - {fileID: 2100000, guid: 7e09ecbb0e989ea439d2743dfcbd05a7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -316,7 +317,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cf2767245fc54c443986356de0e30dc0, type: 2}
+  - {fileID: 2100000, guid: 7e09ecbb0e989ea439d2743dfcbd05a7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -348,6 +349,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &59660474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59660468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c82cfd5fab30a347bf69238c5320719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eduWallColliders: []
+  eduRigidBodyColliders: []
 --- !u!1 &482799693
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,6 +511,55 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1168682179
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1168682181}
+  - component: {fileID: 1168682180}
+  m_Layer: 0
+  m_Name: Physics manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1168682180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168682179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1a5ca4be3dbd224fb6ea4bf7c9dd43d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rbs: []
+  gravityOn: 0
+  gravityForce: {x: 0, y: 0}
+  torqueOn: 0
+  torque: -150
+--- !u!4 &1168682181
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168682179}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.29413882, y: -1.2579724, z: -19.790892}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1241996179
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,6 +657,7 @@ GameObject:
   - component: {fileID: 1575589160}
   - component: {fileID: 1575589159}
   - component: {fileID: 1575589158}
+  - component: {fileID: 1575589162}
   m_Layer: 0
   m_Name: Ball (2)
   m_TagString: Untagged
@@ -636,7 +701,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cf2767245fc54c443986356de0e30dc0, type: 2}
+  - {fileID: 2100000, guid: b47ea2cef7d9ee0428dd5d26bec47013, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -773,7 +838,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cf2767245fc54c443986356de0e30dc0, type: 2}
+  - {fileID: 2100000, guid: b47ea2cef7d9ee0428dd5d26bec47013, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -805,6 +870,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1575589162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575589156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c82cfd5fab30a347bf69238c5320719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eduWallColliders: []
+  eduRigidBodyColliders: []
 --- !u!1 &1980125772
 GameObject:
   m_ObjectHideFlags: 0
@@ -818,6 +897,7 @@ GameObject:
   - component: {fileID: 1980125776}
   - component: {fileID: 1980125775}
   - component: {fileID: 1980125774}
+  - component: {fileID: 1980125778}
   m_Layer: 0
   m_Name: Ball (1)
   m_TagString: Untagged
@@ -861,7 +941,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cf2767245fc54c443986356de0e30dc0, type: 2}
+  - {fileID: 2100000, guid: 6f59a779fbfca1445904ed3326cf95a8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -998,7 +1078,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cf2767245fc54c443986356de0e30dc0, type: 2}
+  - {fileID: 2100000, guid: 6f59a779fbfca1445904ed3326cf95a8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1030,6 +1110,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1980125778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980125772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c82cfd5fab30a347bf69238c5320719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eduWallColliders: []
+  eduRigidBodyColliders: []
 --- !u!1 &1999226370
 GameObject:
   m_ObjectHideFlags: 0
@@ -1043,6 +1137,7 @@ GameObject:
   - component: {fileID: 1999226374}
   - component: {fileID: 1999226373}
   - component: {fileID: 1999226372}
+  - component: {fileID: 1999226376}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -1255,6 +1350,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1999226376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999226370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c82cfd5fab30a347bf69238c5320719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eduWallColliders: []
+  eduRigidBodyColliders: []
 --- !u!1 &2047829050
 GameObject:
   m_ObjectHideFlags: 0
@@ -1270,7 +1379,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2047829051
 Transform:
   m_ObjectHideFlags: 0
@@ -1279,7 +1388,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2047829050}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.584321, y: -0.80474246, z: -0.034452386}
+  m_LocalPosition: {x: 0.74, y: 1.38, z: -0.034452386}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

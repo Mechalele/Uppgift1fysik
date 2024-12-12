@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class Contact : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public eduRigidBody rbA;
+    public eduRigidBody rbB;
+    Vector2 colliN;
+    float penetration;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

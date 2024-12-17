@@ -136,7 +136,6 @@ GameObject:
   - component: {fileID: 59660472}
   - component: {fileID: 59660471}
   - component: {fileID: 59660470}
-  - component: {fileID: 59660474}
   m_Layer: 0
   m_Name: Ball (3)
   m_TagString: Untagged
@@ -285,7 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0}
-  startAngularVelocity: 8
+  startAngularVelocity: 0
   updatingAngularVelocity: 0
   totalAngularVelocity: 0
   force: {x: 0, y: 0}
@@ -349,20 +348,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &59660474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 59660468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c82cfd5fab30a347bf69238c5320719, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eduWallColliders: []
-  eduRigidBodyColliders: []
 --- !u!1 &482799693
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,6 +506,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1168682181}
   - component: {fileID: 1168682180}
+  - component: {fileID: 1168682182}
   m_Layer: 0
   m_Name: Physics manager
   m_TagString: Untagged
@@ -560,6 +546,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1168682182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168682179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c82cfd5fab30a347bf69238c5320719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eduWallColliders: []
+  eduCircleColliders: []
 --- !u!1 &1241996179
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,7 +657,6 @@ GameObject:
   - component: {fileID: 1575589160}
   - component: {fileID: 1575589159}
   - component: {fileID: 1575589158}
-  - component: {fileID: 1575589162}
   m_Layer: 0
   m_Name: Ball (2)
   m_TagString: Untagged
@@ -806,7 +805,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0}
-  startAngularVelocity: 8
+  startAngularVelocity: 0
   updatingAngularVelocity: 0
   totalAngularVelocity: 0
   force: {x: 0, y: 0}
@@ -870,20 +869,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1575589162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1575589156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c82cfd5fab30a347bf69238c5320719, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eduWallColliders: []
-  eduRigidBodyColliders: []
 --- !u!1 &1980125772
 GameObject:
   m_ObjectHideFlags: 0
@@ -897,7 +882,6 @@ GameObject:
   - component: {fileID: 1980125776}
   - component: {fileID: 1980125775}
   - component: {fileID: 1980125774}
-  - component: {fileID: 1980125778}
   m_Layer: 0
   m_Name: Ball (1)
   m_TagString: Untagged
@@ -1046,7 +1030,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0}
-  startAngularVelocity: 8
+  startAngularVelocity: 0
   updatingAngularVelocity: 0
   totalAngularVelocity: 0
   force: {x: 0, y: 0}
@@ -1110,20 +1094,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1980125778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1980125772}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c82cfd5fab30a347bf69238c5320719, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eduWallColliders: []
-  eduRigidBodyColliders: []
 --- !u!1 &1999226370
 GameObject:
   m_ObjectHideFlags: 0
@@ -1137,7 +1107,6 @@ GameObject:
   - component: {fileID: 1999226374}
   - component: {fileID: 1999226373}
   - component: {fileID: 1999226372}
-  - component: {fileID: 1999226376}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -1286,7 +1255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0}
-  startAngularVelocity: 8
+  startAngularVelocity: 0
   updatingAngularVelocity: 0
   totalAngularVelocity: 0
   force: {x: 0, y: 0}
@@ -1350,20 +1319,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1999226376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1999226370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c82cfd5fab30a347bf69238c5320719, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eduWallColliders: []
-  eduRigidBodyColliders: []
 --- !u!1 &2047829050
 GameObject:
   m_ObjectHideFlags: 0

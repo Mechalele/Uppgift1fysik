@@ -17,7 +17,7 @@ public class eduRigidBody : MonoBehaviour
     public float torque; //vrid/kraft(?) moment
     public float inertia; //tröghets moment
     public float bounceConstant;
-    public float restitution;
+    public float restitution; //Cr 
     
     //add ons
     public int frameSkip;
@@ -62,7 +62,7 @@ public class eduRigidBody : MonoBehaviour
     {
         //Debug.Log(" y led " + force.y + " x led " + force.x + " accel " + force.y / mass + " mass " + mass);
 
-        //v = v + at, a = F/m = -9.82
+        //v(t) = v0 + at, a = F/m = -9.82
         float nextVelY = velocity.y + (force.y / mass) * deltaTime;
         velocity.y = nextVelY;
 
@@ -73,15 +73,6 @@ public class eduRigidBody : MonoBehaviour
         float nextPosX = transform.position.x + (nextVelX * deltaTime);
 
         transform.position = new Vector3(nextPosX, nextPosY);
-
-        //velocity.y += (force.y / mass) * deltaTime;
-        //velocity.x += (force.x / mass) * deltaTime;
-
-        //Vector3 newPos = transform.position;
-        //newPos.y += velocity.y * deltaTime;
-        //newPos.x += velocity.x * deltaTime;
-
-        //transform.position = newPos;
     }
 
     public void applyForce(Vector2 f)

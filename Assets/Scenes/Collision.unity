@@ -421,11 +421,11 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: -7.093116, y: 6.2014337, z: 0}
-  - {x: 8.993683, y: 6.2360287, z: 0}
-  - {x: 8.993683, y: -6.9447684, z: 0}
-  - {x: -7.093116, y: -7.08315, z: 0}
-  - {x: -7.1277113, y: 6.201434, z: 0}
+  - {x: -7, y: 6, z: 0}
+  - {x: 9, y: 6, z: 0}
+  - {x: 9, y: -7, z: 0}
+  - {x: -7, y: -7, z: 0}
+  - {x: -7, y: 6, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -530,7 +530,7 @@ MonoBehaviour:
   gravityOn: 0
   gravityForce: {x: 0, y: 0}
   torqueOn: 0
-  torque: -150
+  torque: 0
 --- !u!4 &1168682181
 Transform:
   m_ObjectHideFlags: 0

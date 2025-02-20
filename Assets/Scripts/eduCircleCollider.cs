@@ -22,7 +22,16 @@ public class eduCircleCollider : MonoBehaviour
 
     private void calculateValues()
     {
-        radius = gameObject.transform.localScale.x / 2f;
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            radius = spriteRenderer.bounds.size.x / 2f;
+        }
+        else
+        {
+            radius = transform.localScale.x / 2f;
+        }
+
         rb = GetComponent<eduRigidBody>();
         rb.mass = density * radius * radius * Mathf.PI; // Samma som densitet * area eftersom att det är en cirkel
         rb.inertia = (radius * radius * rb.mass) / 2;

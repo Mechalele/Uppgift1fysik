@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static eduWallCollider;
 
 public class eduWallCollider : MonoBehaviour
 {
     private LineRenderer line;
     public Vector3[] wallPos;
     
-    public enum wallSide 
+    public enum Wallside 
     { 
         Left, Right, Top, Bottom 
     };
 
-    public wallSide side;
+    public Wallside side;
 
     private void Start()
     {
@@ -27,30 +28,31 @@ public class eduWallCollider : MonoBehaviour
 
     void Update()
     {
-        Vector3 topVec = new Vector3(wallPos[1].x - wallPos[0].x, wallPos[1].y - wallPos[0].y, 0);
-        Vector3 rightVec = new Vector3(wallPos[2].x - wallPos[1].x, wallPos[2].y - wallPos[1].y, 0);
-        Vector3 bottomVec = new Vector3(wallPos[3].x - wallPos[2].x, wallPos[3].y - wallPos[2].y, 0);
-        Vector3 leftVec = new Vector3(wallPos[4].x - wallPos[3].x, wallPos[4].y - wallPos[3].y, 0);
-        Vector3 chosenVec;
+        Vector3 topVec = new Vector3(wallPos[1].x - wallPos[0].x, wallPos[0].y, 0);
+        Vector3 rightVec = new Vector3(wallPos[1].x, wallPos[2].y - wallPos[1].y, 0);
+        Vector3 bottomVec = new Vector3(wallPos[3].x - wallPos[2].x, wallPos[3].y, 0);
+        Vector3 leftVec = new Vector3(wallPos[4].x, wallPos[4].y - wallPos[3].y, 0);
+        Vector3 chosenVec = Vector3.zero;
 
         switch (side)
         {
-            case wallSide.Left:
+            case Wallside.Left:
                 chosenVec = leftVec;
                 break;
-            case wallSide.Right:
+            case Wallside.Right:
                 chosenVec = rightVec;
                 break;
-            case wallSide.Top:
+            case Wallside.Top:
                 chosenVec = topVec;
                 break;
-            case wallSide.Bottom:
+            case Wallside.Bottom:
                 chosenVec = bottomVec;
                 break;
             default:
                 break;
         }
 
+        Debug.DrawLine(new Vector3(wallPos[0].x, wallPos[0].y), new Vector3(wallPos[1].x, wallPos[1].y), Color.red);
 
 
         if (Input.GetKeyDown(KeyCode.UpArrow))

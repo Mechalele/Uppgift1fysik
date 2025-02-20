@@ -379,6 +379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallPos: []
+  side: 0
 --- !u!120 &482799695
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -558,8 +559,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c82cfd5fab30a347bf69238c5320719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eduWallColliders: []
-  eduCircleColliders: []
+  walls: []
+  rigidBodies: []
 --- !u!1 &1241996179
 GameObject:
   m_ObjectHideFlags: 0

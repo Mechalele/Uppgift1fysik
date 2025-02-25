@@ -17,8 +17,8 @@ public class eduRigidBody : MonoBehaviour
     public float torque; //vrid/kraft(?) moment
     public float inertia; //tröghets moment
     public float bounceConstant;
-    public float restitution; //Cr 
-    
+    public float restitution; //Cr (Studskoefficient)
+
     //add ons
     public int frameSkip;
     public float deltaTime;
@@ -35,17 +35,17 @@ public class eduRigidBody : MonoBehaviour
 
         if (timer > deltaTime)
         {
-            MoveObj();
-            SpinObj();
+            ApplyVelocity();
+            ApplyAngularVelocity();
             timer = Time.fixedDeltaTime;
         }
-        
-        force.x = 0;
-        force.y = 0;
-        torque = 0;
+
+        ResetForceValues();
     }
 
-    private void SpinObj()
+    
+
+    private void ApplyAngularVelocity()
     {
         //Debug.Log(updatingAngularVelocity + " startAngularVelocity " + startAngularVelocity + " totalvel " + totalAngularVelocity + " torque " + torque + " inertia " + inertia);
 
@@ -58,7 +58,7 @@ public class eduRigidBody : MonoBehaviour
         transform.Rotate(0, 0, totalAngularVelocity);
     }
 
-    private void MoveObj()
+    private void ApplyVelocity()
     {
         //Debug.Log(" y led " + force.y + " x led " + force.x + " accel " + force.y / mass + " mass " + mass);
 
@@ -75,19 +75,26 @@ public class eduRigidBody : MonoBehaviour
         transform.position = new Vector3(nextPosX, nextPosY);
     }
 
-    public void applyForce(Vector2 f)
+    public void ApplyForce(Vector2 f)
     {
         force += f;
     }
 
-    public void applyTorque(float t)
+    public void ApplyTorque(float t)
     {
         torque += t;
         //Debug.Log(" applied torque = " + torque + " add on new torque " + t);
     }
 
-    public void applyImpulse(Vector2 j)
+    public void ApplyImpulse(Vector2 j)
     {
-        
+        velocity += j / mass;
+    }
+    
+    private void ResetForceValues()
+    {
+        force.x = 0;
+        force.y = 0;
+        torque = 0;
     }
 }

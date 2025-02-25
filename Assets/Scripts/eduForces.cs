@@ -38,8 +38,8 @@ public class eduForces : MonoBehaviour
                 torque = 0f;
             }
 
-            rb.applyForce(gravityForce); 
-            rb.applyTorque(torque); 
+            rb.ApplyForce(gravityForce); 
+            rb.ApplyTorque(torque); 
         }
         
     }

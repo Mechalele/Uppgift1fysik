@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class eduForces : MonoBehaviour
@@ -38,7 +39,9 @@ public class eduForces : MonoBehaviour
     private void Awake()
     {
         meshFilter = gameObject.AddComponent<MeshFilter>();
-        //meshFilter.mesh = new Mesh();
+        meshRenderer = gameObject.AddComponent<MeshRenderer>(); //awake vs start? renderingen behövs fixas
+        meshRenderer.material = buoyancyMaterial;
+        meshFilter.mesh = new Mesh();
     }
 
     void Start()
@@ -133,7 +136,7 @@ public class eduForces : MonoBehaviour
             windSpeed += 10f;
         }
 
-        if (waterOn == true)
+        if (waterOn == true) //ska den kunna flyttas? annars lägg den i start kanske?
         {
             UpdateBuoyancyArea();
         }
@@ -165,7 +168,7 @@ public class eduForces : MonoBehaviour
         float leftWallX = leftWall.transform.position.x;
         float rightWallX = rightWall.transform.position.x;
 
-        Debug.Log(bottomWallY);
+        //Debug.Log(bottomWallY);
 
         float height = fluidLevel - bottomWallY;
 
@@ -194,7 +197,6 @@ public class eduForces : MonoBehaviour
         mesh.uv = uv;
         mesh.RecalculateNormals();
 
-        GetComponent<MeshFilter>().mesh = mesh;
-
+        //GetComponent<MeshFilter>().mesh = mesh; //ska den va i update eller start???
     }
 }

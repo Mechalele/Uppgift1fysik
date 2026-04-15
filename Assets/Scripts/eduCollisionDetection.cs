@@ -85,7 +85,7 @@ public class eduCollisionDetection : MonoBehaviour
             float normalVelocity = Vector2.Dot(relativeVelocity, normal);
             if (normalVelocity < 0)
             {
-                Vector2 impulse = -(1 + body.restitution) * normalVelocity * normal * body.mass;
+                Vector2 impulse = -(1 + body.restitution) * body.mass * normalVelocity * normal;
                 body.velocity += impulse / body.mass;
             }
         }
@@ -115,12 +115,22 @@ public class eduCollisionDetection : MonoBehaviour
             if (normalVelocity < 0)
             {
                 float e = Mathf.Min(bodyA.restitution, bodyB.restitution);
-                float impulseMagnitude = -(1 + e) * normalVelocity / (1 / bodyA.mass + 1 / bodyB.mass);
+                
+                //float impulseMagnitude2 = (1 + e) * normalVelocity / (1 / bodyA.mass + 1 / bodyB.mass); //resultatet blir samma som den andra uträkningen, slump? eller annat sätt att göra det på
+
+                float impulseMagnitude = (bodyA.mass * bodyB.mass) / (bodyA.mass + bodyB.mass) * (1 + e) * normalVelocity;
+
+                //Debug.Log(impulseMagnitude + " " + impulseMagnitude2);
+
+                //if (impulseMagnitude == impulseMagnitude2)
+                //{
+                //    Debug.Log("test2 = test");
+                //}
 
                 Vector2 impulse = impulseMagnitude * normal;
 
-                bodyA.velocity -= impulse / bodyA.mass;
-                bodyB.velocity += impulse / bodyB.mass;
+                bodyA.velocity += impulse / bodyA.mass;
+                bodyB.velocity -= impulse / bodyB.mass;
 
                 float ERP = 0.5f;
                 Vector2 correction = ERP * penetration * normal;

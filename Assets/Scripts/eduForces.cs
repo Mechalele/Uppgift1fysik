@@ -6,10 +6,11 @@ public class eduForces : MonoBehaviour
 {
     public eduRigidBody[] rbs;
     public eduCircleCollider[] colliders;
+    public eduWallCollider[] walls;
 
     //Gravity
     public bool gravityOn = true;
-    public Vector2 gravityForce = new Vector2(0f, -9.82f);
+    public Vector2 gravityForce = new Vector2(0, 0);
     
     //Torque
     public bool torqueOn = true;
@@ -19,9 +20,14 @@ public class eduForces : MonoBehaviour
     public bool windOn = true;
     public float windSpeed;
     public float airdensityVariable;
+    public Vector2 windDirection = new Vector2(0, 0);
+    public Vector2 windVariation = new Vector2(0, 0);
 
     //Bouyancy
+    public bool waterOn = true;
     public Material buoyancyMaterial;
+    public float fluidLevel;
+    public float fluidDensity;
 
     private MeshFilter meshFilter;
     private MeshRenderer meshRenderer;
@@ -29,9 +35,15 @@ public class eduForces : MonoBehaviour
     private eduWallCollider leftWall;
     private eduWallCollider rightWall;
 
+    private void Awake()
+    {
+        meshFilter = gameObject.AddComponent<MeshFilter>();
+        //meshFilter.mesh = new Mesh();
+    }
+
     void Start()
     {
-        eduWallCollider[] walls = FindObjectsOfType<eduWallCollider>();
+        walls = FindObjectsOfType<eduWallCollider>();
         foreach (eduWallCollider wall in walls)
         {
             if (wall.side == eduWallCollider.Wallside.Bottom)
@@ -58,66 +70,131 @@ public class eduForces : MonoBehaviour
             {
                 rb.ApplyTorque(torque);
             }
+
+            if (windOn == true)
+            {
+                ApplyWindForce(rb);
+            }
+
+            if (waterOn == true)
+            {
+                ApplyBuoyancyForce(rb);
+            }
         }
-        
     }
 
-    //void ApplyWindForce(eduRigidBody body)
-    //{
-    //    float area = body.transform.localScale.x * body.transform.localScale.y;
+    void ApplyWindForce(eduRigidBody body)
+    {
+        float area = body.transform.localScale.x * body.transform.localScale.y; //ska ändras till väggområdet(?)
+        //Debug.Log(area);
 
-    //    Vector2 variableWind = windDirection * windStrength + new Vector2(
-    //        Random.Range(-windVariation.x, windVariation.x),
-    //        Random.Range(-windVariation.y, windVariation.y)
-    //    );
+        Vector2 variableWind = windDirection * windSpeed + new Vector2(
+            Random.Range(-windVariation.x, windVariation.x),
+            Random.Range(-windVariation.y, windVariation.y)
+        );
 
-    //    Vector2 windForce = variableWind * area;
-    //    body.ApplyForce(windForce);
-    //}
+        Vector2 windForce = variableWind * area;
+        //Debug.Log(windForce);
+        body.ApplyForce(windForce);
+    }
 
-    //void ApplyBuoyancyForce(eduRigidBody body)
-    //{
-    //    eduCircleCollider circle = body.GetComponent<eduCircleCollider>();
-    //    if (circle == null) return;
+    private void Update()
+    {
+        //keys to steer wind direction and speed
+        if (Input.GetKeyDown("up"))
+        {
+            windDirection = new Vector2(0, 1);
+            Debug.Log("wind = upp");
+        }
+        else if (Input.GetKeyDown("down"))
+        {
+            windDirection = new Vector2(0, -1);
 
-    //    float depth = fluidLevel - body.transform.position.y;
-    //    if (depth > 0)
-    //    {
-    //        float submergedArea = Mathf.PI * circle.radius * circle.radius;
+        }
+        else if (Input.GetKeyDown("left"))
+        {
+            windDirection = new Vector2(-1, 0);
 
-    //        float buoyancyForceMagnitude = fluidDensity * submergedArea * depth * gravity.y;
-    //        Vector2 buoyancyForce = new Vector2(0, -buoyancyForceMagnitude);
+        }
+        else if (Input.GetKeyDown("right"))
+        {
+            windDirection = new Vector2(1, 0);
+        }
+        else if (Input.GetKeyDown("d"))
+        {
+            windDirection = new Vector2(1, 1);
+        }
+        else if (Input.GetKeyDown("f"))
+        {
+            windDirection = new Vector2(-1, -1);
+        }
+        else if(Input.GetKeyDown("s"))
+        {
+            windSpeed += 10f;
+        }
 
-    //        body.ApplyForce(buoyancyForce);
-    //    }
-    //}
+        if (waterOn == true)
+        {
+            UpdateBuoyancyArea();
+        }
+    }
 
-    //void UpdateBuoyancyArea()
-    //{
+    void ApplyBuoyancyForce(eduRigidBody body)
+    {
+        eduCircleCollider circle = body.GetComponent<eduCircleCollider>();
+        if (circle == null) return;
 
-    //    if (meshFilter == null || bottomWall == null || leftWall == null || rightWall == null) return;
+        float depth = fluidLevel - body.transform.position.y;
+        if (depth > 0)
+        {
+            float submergedArea = Mathf.PI * circle.radius * circle.radius;
 
-    //    float bottomWallY = bottomWall.transform.position.y;
-    //    float leftWallX = leftWall.transform.position.x;
-    //    float rightWallX = rightWall.transform.position.x;
+            float buoyancyForceMagnitude = fluidDensity * submergedArea * depth * gravityForce.y;
+            Vector2 buoyancyForce = new Vector2(0, -buoyancyForceMagnitude);
 
-    //    float height = fluidLevel - bottomWallY;
-    //    if (height < 0) height = 0;
+            body.ApplyForce(buoyancyForce);
+        }
+    }
 
-    //    Vector3[] vertices = new Vector3[4];
-    //    vertices[0] = new Vector3(leftWallX, bottomWallY, 0);
-    //    vertices[1] = new Vector3(rightWallX, bottomWallY, 0);
-    //    vertices[2] = new Vector3(leftWallX, bottomWallY + height, 0);
-    //    vertices[3] = new Vector3(rightWallX, bottomWallY + height, 0);
+    void UpdateBuoyancyArea()
+    {
+        if (meshFilter == null || bottomWall == null || leftWall == null || rightWall == null)
+            return;
 
-    //    int[] triangles = new int[6] { 0, 2, 1, 1, 2, 3 };
+        float bottomWallY = bottomWall.transform.position.y;
+        float leftWallX = leftWall.transform.position.x;
+        float rightWallX = rightWall.transform.position.x;
 
-    //    Mesh mesh = new Mesh();
-    //    mesh.vertices = vertices;
-    //    mesh.triangles = triangles;
-    //    mesh.RecalculateNormals();
+        Debug.Log(bottomWallY);
 
-    //    meshFilter.mesh = mesh;
+        float height = fluidLevel - bottomWallY;
 
-    //}
+        if (height < 0)
+            height = 0;
+
+        Vector3[] vertices = new Vector3[4];
+        vertices[0] = new Vector3(leftWallX, bottomWallY, 0);
+        vertices[1] = new Vector3(rightWallX, bottomWallY, 0);
+        vertices[2] = new Vector3(leftWallX, bottomWallY + height, 0);
+        vertices[3] = new Vector3(rightWallX, bottomWallY + height, 0);
+
+        int[] triangles = new int[6] { 0, 2, 1, 1, 2, 3 };
+
+        Vector2[] uv = new Vector2[4]
+        {
+        new Vector2(0,0),
+        new Vector2(1,0),
+        new Vector2(0,1),
+        new Vector2(1,1)
+        };
+
+        Mesh mesh = new Mesh();
+        mesh.vertices = vertices;
+        mesh.triangles = triangles;
+        mesh.uv = uv;
+        mesh.RecalculateNormals();
+
+        GetComponent<MeshFilter>().mesh = mesh;
+
+    }
 }

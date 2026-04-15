@@ -43,8 +43,6 @@ public class eduRigidBody : MonoBehaviour
         ResetForceValues();
     }
 
-    
-
     private void ApplyAngularVelocity()
     {
         //Debug.Log(updatingAngularVelocity + " startAngularVelocity " + startAngularVelocity + " totalvel " + totalAngularVelocity + " torque " + torque + " inertia " + inertia);

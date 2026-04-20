@@ -136,7 +136,7 @@ public class eduForces : MonoBehaviour
             windSpeed += 10f;
         }
 
-        if (waterOn == true) //ska den kunna flyttas? annars lägg den i start kanske?
+        if (waterOn == true) //ska kunna uppdateras i runtime annars kan den va i start
         {
             UpdateBuoyancyArea();
         }

@@ -18,7 +18,7 @@ public class eduWallCollider : MonoBehaviour
     private void Start()
     {
         line = GetComponent<LineRenderer>();
-        wallPos = new Vector3[2];
+        //wallPos = new Vector3[2];
 
         //wallPos[0] = line.GetPosition(0);
         wallPos = new Vector3[line.positionCount];

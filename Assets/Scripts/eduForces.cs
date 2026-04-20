@@ -38,14 +38,15 @@ public class eduForces : MonoBehaviour
 
     private void Awake()
     {
-        meshFilter = gameObject.AddComponent<MeshFilter>();
-        meshRenderer = gameObject.AddComponent<MeshRenderer>(); //awake vs start? renderingen behövs fixas
-        meshRenderer.material = buoyancyMaterial;
-        meshFilter.mesh = new Mesh();
+        
     }
 
     void Start()
     {
+        meshFilter = gameObject.AddComponent<MeshFilter>();
+        meshRenderer = gameObject.AddComponent<MeshRenderer>(); //awake vs start? renderingen behövs fixas
+        meshRenderer.material = buoyancyMaterial;
+
         walls = FindObjectsOfType<eduWallCollider>();
         foreach (eduWallCollider wall in walls)
         {
@@ -164,11 +165,16 @@ public class eduForces : MonoBehaviour
         if (meshFilter == null || bottomWall == null || leftWall == null || rightWall == null)
             return;
 
+        Mesh mesh = new Mesh();
+        
+        //Tror att det är detta som gör att renderern inte funkar men idk
         float bottomWallY = bottomWall.transform.position.y;
         float leftWallX = leftWall.transform.position.x;
         float rightWallX = rightWall.transform.position.x;
 
-        //Debug.Log(bottomWallY);
+        //Debug.Log(bottomWallY); //den tar walls position inte bottomwall
+
+        Debug.Log(leftWallX);
 
         float height = fluidLevel - bottomWallY;
 
@@ -191,10 +197,13 @@ public class eduForces : MonoBehaviour
         new Vector2(1,1)
         };
 
-        Mesh mesh = new Mesh();
+        
         mesh.vertices = vertices;
         mesh.triangles = triangles;
         mesh.uv = uv;
+
+        //något här stämmer inte renderern finns och ser rätt ut dock
+        meshFilter.GetComponent<MeshFilter>().mesh = mesh;
         mesh.RecalculateNormals();
 
         //GetComponent<MeshFilter>().mesh = mesh; //ska den va i update eller start???

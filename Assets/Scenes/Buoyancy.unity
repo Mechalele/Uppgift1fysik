@@ -553,7 +553,7 @@ MonoBehaviour:
   windVariation: {x: 50, y: 50}
   waterOn: 1
   buoyancyMaterial: {fileID: 2100000, guid: e9694f6cc199b1746a4e80df6e81504e, type: 2}
-  fluidLevel: 0.5
+  fluidLevel: 0
   fluidDensity: 997
 --- !u!4 &689850815
 Transform:

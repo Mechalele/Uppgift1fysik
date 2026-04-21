@@ -166,11 +166,11 @@ public class eduForces : MonoBehaviour
             return;
 
         Mesh mesh = new Mesh();
-        
+
         //Tror att det är detta som gör att renderern inte funkar men idk
-        float bottomWallY = bottomWall.transform.position.y;
-        float leftWallX = leftWall.transform.position.x;
-        float rightWallX = rightWall.transform.position.x;
+        float bottomWallY = bottomWall.bottomVec.y;
+        float leftWallX = leftWall.leftVec.x;
+        float rightWallX = rightWall.rightVec.x;
 
         //Debug.Log(bottomWallY); //den tar walls position inte bottomwall
 
@@ -202,10 +202,7 @@ public class eduForces : MonoBehaviour
         mesh.triangles = triangles;
         mesh.uv = uv;
 
-        //något här stämmer inte renderern finns och ser rätt ut dock
         meshFilter.GetComponent<MeshFilter>().mesh = mesh;
         mesh.RecalculateNormals();
-
-        //GetComponent<MeshFilter>().mesh = mesh; //ska den va i update eller start???
     }
 }

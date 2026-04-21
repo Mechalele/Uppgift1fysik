@@ -7,7 +7,9 @@ public class eduWallCollider : MonoBehaviour
 {
     public LineRenderer line;
     public Vector3[] wallPos;
-    
+    public Vector3 leftVec, rightVec, topVec, bottomVec;
+
+
     public enum Wallside 
     { 
         Left, Right, Top, Bottom 
@@ -24,31 +26,23 @@ public class eduWallCollider : MonoBehaviour
         wallPos = new Vector3[line.positionCount];
 
         line.GetPositions(wallPos);
-    }
-
-    void Update()
-    {
-        Vector3 chosenVec = Vector3.zero;
 
         switch (side)
         {
             case Wallside.Left:
-                chosenVec = new Vector3(wallPos[0].x, wallPos[1].y - wallPos[0].y, 0);
+                leftVec = new Vector3(wallPos[0].x, wallPos[1].y - wallPos[0].y, 0);
                 break;
             case Wallside.Right:
-                chosenVec = new Vector3(wallPos[0].x, wallPos[1].y - wallPos[0].y, 0);
+                rightVec = new Vector3(wallPos[0].x, wallPos[1].y - wallPos[0].y, 0);
                 break;
             case Wallside.Top:
-                chosenVec = new Vector3(wallPos[1].x - wallPos[0].x, wallPos[0].y, 0);
+                topVec = new Vector3(wallPos[1].x - wallPos[0].x, wallPos[0].y, 0);
                 break;
             case Wallside.Bottom:
-                chosenVec = new Vector3(wallPos[1].x - wallPos[0].x, wallPos[0].y, 0);
+                bottomVec = new Vector3(wallPos[1].x - wallPos[0].x, wallPos[0].y, 0);
                 break;
             default:
                 break;
         }
-
-        //Debug.DrawLine(new Vector3(wallPos[0].x, wallPos[0].y), new Vector3(wallPos[1].x, wallPos[1].y), Color.red);
-
     }
 }
